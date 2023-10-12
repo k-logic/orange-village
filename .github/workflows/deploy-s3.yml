@@ -3,6 +3,12 @@ on:
   push:
       branches:
         - master
+
+env:
+  AWS_S3_REGION: 'us-west-2'
+  AWS_S3_BUCKET: 's3.orange-village.com'
+  SOURCE_DIR: '.'
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -15,4 +21,4 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: |
-          aws s3 cp --recursive --region us-west-2 build s3://s3.orange-village.com
+          aws s3 sync --delete --region ${{env.AWS_S3_REGION}} ${{env.SOURCE_DIR}} s3://${{env.AWS_S3_BUCKET}}/ --exclude '.*git*'
