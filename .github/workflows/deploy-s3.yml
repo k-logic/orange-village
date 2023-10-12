@@ -2,7 +2,7 @@ name: Deploy S3
 on:
   push:
       branches:
-        - master
+        - main
 
 env:
   AWS_S3_REGION: 'us-west-2'
