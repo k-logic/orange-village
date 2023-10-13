@@ -25,3 +25,9 @@ jobs:
           SOURCE_DIR: '.'
         run: |
           aws s3 sync --delete --region ${{env.S3_REGION}} ${{env.SOURCE_DIR}} s3://${{env.S3_BUCKET}}/ --exclude '.*git*'
+       
+      - name: Clear cache
+        env:
+          DISTRIBUTION_ID: 'E94AY2X9BG5TI'
+        run: |
+          aws cloudfront create-invalidation --distribution-id ${{env.DISTRIBUTION_ID}} --paths "/*"
