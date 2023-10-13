@@ -4,11 +4,6 @@ on:
       branches:
         - main
 
-env:
-  AWS_S3_REGION: 'us-west-2'
-  AWS_S3_BUCKET: 's3.orange-village.com'
-  SOURCE_DIR: '.'
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -16,9 +11,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@master  # リポジトリをチェックアウト
 
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          
       - name: Deploy  # S3にデプロイ 
         env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          S3_REGION: 'us-west-2'
+          S3_BUCKET: 's3.orange-village.com'
+          SOURCE_DIR: '.'
         run: |
-          aws s3 sync --delete --region ${{env.AWS_S3_REGION}} ${{env.SOURCE_DIR}} s3://${{env.AWS_S3_BUCKET}}/ --exclude '.*git*'
+          aws s3 sync --delete --region ${{env.S3_REGION}} ${{env.SOURCE_DIR}} s3://${{env.S3_BUCKET}}/ --exclude '.*git*'
