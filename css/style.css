@@ -35,7 +35,7 @@
 .fade-in {
   opacity: 0;
   transform: translateY(30px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
+  transition: opacity 1.4s ease, transform 1.4s ease;
 }
 
 .fade-in.is-visible {
