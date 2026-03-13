@@ -71,6 +71,40 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+  // Shared footer
+  var footerEl = document.getElementById('shared-footer');
+  if (footerEl) {
+    footerEl.innerHTML = '<div class="footer__inner">'
+      + '<div class="footer__top">'
+      + '<div class="footer__info">'
+      + '<h3>オレンヂビラ湯河原</h3>'
+      + '<p><i class="fas fa-map-marker-alt"></i> 〒259-0312 神奈川県足柄下郡湯河原町吉浜1905</p>'
+      + '<p class="phone"><i class="fas fa-phone-alt"></i> TEL: 0465-63-1622</p>'
+      + '<p class="phone-note"><i class="far fa-clock"></i> 受付時間｜09:00〜17:00</p>'
+      + '</div>'
+      + '<nav class="footer__nav">'
+      + '<ul>'
+      + '<li><a href="index.html">ホーム</a></li>'
+      + '<li><a href="information.html">宿泊案内</a></li>'
+      + '<li><a href="price.html">料金</a></li>'
+      + '<li><a href="bbq.html">バーベキュー</a></li>'
+      + '<li><a href="tennis.html">テニス</a></li>'
+      + '<li><a href="access.html">アクセス</a></li>'
+      + '<li><a href="contact.html">ご予約・お問い合わせ</a></li>'
+      + '<li><a href="tax.html">宿泊税について</a></li>'
+      + '</ul>'
+      + '<ul class="footer__external">'
+      + '<li><a href="https://www.yugawara.or.jp/sightseeing/" target="_blank" rel="noopener">湯河原の観光情報</a></li>'
+      + '<li><a href="https://www.manazuru.net/" target="_blank" rel="noopener">真鶴の観光情報</a></li>'
+      + '</ul>'
+      + '</nav>'
+      + '</div>'
+      + '<div class="footer__bottom">'
+      + 'Copyright &copy; 2023 orange-villa All Rights Reserved.'
+      + '</div>'
+      + '</div>';
+  }
+
   // Scroll to top
   var btnTop = document.querySelector('.btn-top');
   if (btnTop) {
