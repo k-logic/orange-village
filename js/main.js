@@ -44,6 +44,23 @@ document.addEventListener('DOMContentLoaded', function () {
     if (newsPrice) newsPrice.style.display = '';
   }
 
+  // Scroll animation
+  var fadeEls = document.querySelectorAll('.fade-in');
+  if (fadeEls.length > 0 && 'IntersectionObserver' in window) {
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    fadeEls.forEach(function (el) {
+      observer.observe(el);
+    });
+  }
+
   // Scroll to top
   var btnTop = document.querySelector('.btn-top');
   if (btnTop) {
