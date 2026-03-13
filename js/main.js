@@ -32,6 +32,18 @@ document.addEventListener('DOMContentLoaded', function () {
     }, 5000);
   }
 
+  // Date-based content switch (2026/3/28~)
+  var switchDate = new Date(2026, 2, 28); // month is 0-indexed: 2 = March
+  if (new Date() >= switchDate) {
+    var priceOld = document.getElementById('price-old');
+    var priceNew = document.getElementById('price-new');
+    if (priceOld) priceOld.style.display = 'none';
+    if (priceNew) priceNew.style.display = '';
+
+    var newsPrice = document.getElementById('news-price-update');
+    if (newsPrice) newsPrice.style.display = '';
+  }
+
   // Scroll to top
   var btnTop = document.querySelector('.btn-top');
   if (btnTop) {
