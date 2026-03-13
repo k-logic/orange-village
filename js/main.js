@@ -47,6 +47,14 @@ document.addEventListener('DOMContentLoaded', function () {
   // Scroll animation
   var fadeEls = document.querySelectorAll('.fade-in');
   if (fadeEls.length > 0 && 'IntersectionObserver' in window) {
+    // 既に画面内にある要素はすぐ表示
+    fadeEls.forEach(function (el) {
+      var rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight) {
+        el.classList.add('is-visible');
+      }
+    });
+
     var observer = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
@@ -57,7 +65,9 @@ document.addEventListener('DOMContentLoaded', function () {
     }, { threshold: 0.25 });
 
     fadeEls.forEach(function (el) {
-      observer.observe(el);
+      if (!el.classList.contains('is-visible')) {
+        observer.observe(el);
+      }
     });
   }
 
