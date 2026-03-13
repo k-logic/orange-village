@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', function () {
           observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.15 });
+    }, { threshold: 0.25 });
 
     fadeEls.forEach(function (el) {
       observer.observe(el);
