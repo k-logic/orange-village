@@ -22,42 +22,10 @@
 <body>
 
   <!-- Header -->
-  <header class="header">
-    <div class="header__inner">
-      <a href="index.html" class="header__logo">
-        <img src="./img/01/title.png" alt="オレンヂビラ湯河原">
-      </a>
-      <nav class="header__nav">
-        <ul>
-          <li><a href="index.html">ホーム</a></li>
-          <li><a href="information.html" class="active">宿泊案内</a></li>
-          <li><a href="bbq.html">BBQ</a></li>
-          <li><a href="tennis.html">テニス</a></li>
-          <li><a href="price.html">料金</a></li>
-          <li><a href="tax.html">宿泊税</a></li>
-          <li><a href="access.html">アクセス</a></li>
-          <li><a href="contact.html">ご予約</a></li>
-        </ul>
-      </nav>
-      <button class="hamburger" aria-label="メニュー">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </header>
+  <header class="header" id="shared-header"></header>
 
   <!-- Mobile Nav -->
-  <div class="nav-overlay">
-    <ul>
-      <li><a href="index.html">ホーム</a></li>
-      <li><a href="information.html">宿泊案内</a></li>
-      <li><a href="bbq.html">BBQ</a></li>
-      <li><a href="tennis.html">テニス</a></li>
-      <li><a href="price.html">料金</a></li>
-      <li><a href="tax.html">宿泊税</a></li>
-      <li><a href="access.html">アクセス</a></li>
-      <li><a href="contact.html">ご予約・お問い合わせ</a></li>
-    </ul>
-  </div>
+  <div class="nav-overlay" id="shared-nav"></div>
 
   <!-- Page Hero -->
   <section class="page-hero">
@@ -123,13 +91,7 @@
   </section>
 
   <!-- CTA -->
-  <section class="cta">
-    <div class="container">
-      <h2>ご予約・お問い合わせ</h2>
-      <p>お電話にてご予約を承っております。お気軽にお問い合わせください。</p>
-      <a href="contact.html" class="btn btn--primary">ご予約はこちら</a>
-    </div>
-  </section>
+  <section class="cta" id="shared-cta"></section>
 
   <!-- Footer -->
   <footer class="footer" id="shared-footer"></footer>

@@ -1,4 +1,43 @@
 document.addEventListener('DOMContentLoaded', function () {
+  // Shared header & mobile nav
+  var currentPage = location.pathname.split('/').pop() || 'index.html';
+  var navItems = [
+    { href: 'index.html', label: 'ホーム', labelMobile: 'ホーム' },
+    { href: 'information.html', label: '宿泊案内', labelMobile: '宿泊案内' },
+    { href: 'bbq.html', label: 'BBQ', labelMobile: 'BBQ' },
+    { href: 'tennis.html', label: 'テニス', labelMobile: 'テニス' },
+    { href: 'price.html', label: '料金', labelMobile: '料金' },
+    { href: 'tax.html', label: '宿泊税', labelMobile: '宿泊税' },
+    { href: 'access.html', label: 'アクセス', labelMobile: 'アクセス' },
+    { href: 'contact.html', label: 'ご予約', labelMobile: 'ご予約・お問い合わせ' }
+  ];
+
+  var headerEl = document.getElementById('shared-header');
+  if (headerEl) {
+    var headerLinks = navItems.map(function (item) {
+      var cls = item.href === currentPage ? ' class="active"' : '';
+      return '<li><a href="' + item.href + '"' + cls + '>' + item.label + '</a></li>';
+    }).join('');
+
+    headerEl.innerHTML = '<div class="header__inner">'
+      + '<a href="index.html" class="header__logo">'
+      + '<img src="./img/01/title.png" alt="オレンヂビラ湯河原">'
+      + '</a>'
+      + '<nav class="header__nav"><ul>' + headerLinks + '</ul></nav>'
+      + '<button class="hamburger" aria-label="メニュー">'
+      + '<span></span><span></span><span></span>'
+      + '</button>'
+      + '</div>';
+  }
+
+  var navEl = document.getElementById('shared-nav');
+  if (navEl) {
+    var mobileLinks = navItems.map(function (item) {
+      return '<li><a href="' + item.href + '">' + item.labelMobile + '</a></li>';
+    }).join('');
+    navEl.innerHTML = '<ul>' + mobileLinks + '</ul>';
+  }
+
   // Hamburger menu toggle
   var hamburger = document.querySelector('.hamburger');
   var navOverlay = document.querySelector('.nav-overlay');
@@ -30,6 +69,16 @@ document.addEventListener('DOMContentLoaded', function () {
       current = (current + 1) % slides.length;
       slides[current].classList.add('active');
     }, 5000);
+  }
+
+  // Shared CTA
+  var ctaEl = document.getElementById('shared-cta');
+  if (ctaEl) {
+    ctaEl.innerHTML = '<div class="container">'
+      + '<h2>ご予約・お問い合わせ</h2>'
+      + '<p>お電話にてご予約を承っております。お気軽にお問い合わせください。</p>'
+      + '<a href="contact.html" class="btn btn--primary">ご予約はこちら</a>'
+      + '</div>';
   }
 
   // Date-based content switch (2026/3/28~)
