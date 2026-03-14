@@ -374,6 +374,49 @@ h1, h2, h3, h4, h5, h6 {
   pointer-events: none;
 }
 
+/* Falling Sakura Petals */
+.petal {
+  position: absolute;
+  top: -30px;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0;
+  animation: petal-fall linear forwards;
+}
+
+.petal {
+  filter: drop-shadow(0 1px 2px rgba(180, 100, 120, 0.2));
+}
+
+@keyframes petal-fall {
+  0% {
+    opacity: 0;
+    transform: translateX(0) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(var(--petal-scale));
+  }
+  8% {
+    opacity: 0.85;
+  }
+  20% {
+    transform: translateX(calc(var(--leaf-drift) * 0.2)) rotateX(60deg) rotateY(30deg) rotateZ(calc(var(--leaf-rotate) * 0.2)) scale(var(--petal-scale));
+  }
+  40% {
+    opacity: 0.75;
+    transform: translateX(calc(var(--leaf-drift) * -0.15)) rotateX(-20deg) rotateY(-45deg) rotateZ(calc(var(--leaf-rotate) * 0.45)) scale(var(--petal-scale));
+  }
+  60% {
+    transform: translateX(calc(var(--leaf-drift) * 0.6)) rotateX(40deg) rotateY(60deg) rotateZ(calc(var(--leaf-rotate) * 0.65)) scale(var(--petal-scale));
+  }
+  80% {
+    opacity: 0.6;
+    transform: translateX(calc(var(--leaf-drift) * 0.3)) rotateX(-30deg) rotateY(-20deg) rotateZ(calc(var(--leaf-rotate) * 0.85)) scale(var(--petal-scale));
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(var(--leaf-drift)) rotateX(20deg) rotateY(40deg) rotateZ(var(--leaf-rotate)) scale(var(--petal-scale));
+    top: 100%;
+  }
+}
+
 .hero__overlay {
   position: absolute;
   top: 0;

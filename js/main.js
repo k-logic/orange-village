@@ -71,6 +71,36 @@ document.addEventListener('DOMContentLoaded', function () {
     }, 5000);
   }
 
+  // Falling sakura petals (hero section only)
+  var heroEl = document.querySelector('.hero');
+  if (heroEl) {
+    var petalCount = 20;
+    var petalImages = ['./img/haru/petal1.svg', './img/haru/petal2.svg', './img/haru/petal3.svg'];
+
+    function createPetal() {
+      var petal = document.createElement('img');
+      petal.className = 'petal';
+      petal.src = petalImages[Math.floor(Math.random() * petalImages.length)];
+      petal.alt = '';
+      petal.style.left = Math.random() * 100 + '%';
+      petal.style.setProperty('--petal-scale', (0.5 + Math.random() * 0.7).toFixed(2));
+      petal.style.setProperty('--leaf-drift', (Math.random() * 160 - 80) + 'px');
+      petal.style.setProperty('--leaf-rotate', (Math.random() * 720 + 180) + 'deg');
+      petal.style.animationDuration = (8 + Math.random() * 8) + 's';
+      petal.style.animationDelay = (Math.random() * 12) + 's';
+      heroEl.appendChild(petal);
+
+      petal.addEventListener('animationend', function () {
+        petal.remove();
+        createPetal();
+      });
+    }
+
+    for (var i = 0; i < petalCount; i++) {
+      createPetal();
+    }
+  }
+
   // Shared CTA
   var ctaEl = document.getElementById('shared-cta');
   if (ctaEl) {
