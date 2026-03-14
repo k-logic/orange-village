@@ -959,13 +959,13 @@ h1, h2, h3, h4, h5, h6 {
 .footer__nav ul {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 8px;
+  gap: 2px;
 }
 
 .footer__nav a {
-  font-size: 14px;
+  font-size: 13px;
   color: var(--color-text-light);
-  padding: 6px 0;
+  padding: 4px 0;
   display: block;
   transition: color var(--transition);
 }
