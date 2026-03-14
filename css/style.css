@@ -161,13 +161,14 @@ h1, h2, h3, h4, h5, h6 {
 .btn--primary {
   background: var(--color-primary);
   color: var(--color-white);
+  box-shadow: 0 4px 16px rgba(181, 132, 90, 0.3);
 }
 
 .btn--primary:hover {
   background: var(--color-primary-dark);
   color: var(--color-white);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-lg);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(181, 132, 90, 0.4);
 }
 
 .btn--outline {
@@ -890,20 +891,22 @@ h1, h2, h3, h4, h5, h6 {
    ============================ */
 .cta {
   text-align: center;
-  padding: 64px 20px;
-  background: var(--color-brown);
+  padding: 80px 20px;
+  background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-brown) 100%);
   color: var(--color-white);
 }
 
 .cta h2 {
-  font-size: 24px;
-  margin-bottom: 8px;
+  font-size: 28px;
+  margin-bottom: 12px;
   color: var(--color-white);
+  letter-spacing: 1px;
 }
 
 .cta p {
-  margin-bottom: 24px;
+  margin-bottom: 32px;
   opacity: 0.9;
+  font-size: 15px;
 }
 
 /* ============================
