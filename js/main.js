@@ -71,33 +71,25 @@ document.addEventListener('DOMContentLoaded', function () {
     }, 5000);
   }
 
-  // Falling sakura petals (hero section only)
+  // Fireflies (hero section only — summer)
+  // Soft glowing dots that drift and twinkle. Pure CSS visuals; JS only seeds
+  // per-firefly randomness so no two share a path or blink rhythm.
   var heroEl = document.querySelector('.hero');
   if (heroEl) {
-    var petalCount = 20;
-    var petalImages = ['./img/haru/petal1.svg', './img/haru/petal2.svg', './img/haru/petal3.svg'];
-
-    function createPetal() {
-      var petal = document.createElement('img');
-      petal.className = 'petal';
-      petal.src = petalImages[Math.floor(Math.random() * petalImages.length)];
-      petal.alt = '';
-      petal.style.left = Math.random() * 100 + '%';
-      petal.style.setProperty('--petal-scale', (0.5 + Math.random() * 0.7).toFixed(2));
-      petal.style.setProperty('--leaf-drift', (Math.random() * 160 - 80) + 'px');
-      petal.style.setProperty('--leaf-rotate', (Math.random() * 720 + 180) + 'deg');
-      petal.style.animationDuration = (8 + Math.random() * 8) + 's';
-      petal.style.animationDelay = (Math.random() * 12) + 's';
-      heroEl.appendChild(petal);
-
-      petal.addEventListener('animationend', function () {
-        petal.remove();
-        createPetal();
-      });
-    }
-
-    for (var i = 0; i < petalCount; i++) {
-      createPetal();
+    var fireflyCount = 18;
+    for (var i = 0; i < fireflyCount; i++) {
+      var firefly = document.createElement('span');
+      firefly.className = 'firefly';
+      firefly.style.left = Math.random() * 100 + '%';
+      firefly.style.top = Math.random() * 100 + '%';
+      firefly.style.setProperty('--fly-x', (Math.random() * 240 - 120).toFixed(0) + 'px');
+      firefly.style.setProperty('--fly-y', (Math.random() * 200 - 100).toFixed(0) + 'px');
+      firefly.style.setProperty('--fly-duration', (7 + Math.random() * 8).toFixed(1) + 's');
+      firefly.style.setProperty('--glow-duration', (2.5 + Math.random() * 3).toFixed(1) + 's');
+      // Negative delays start each firefly mid-animation, so they're already
+      // spread out and blink out of sync on load instead of pulsing in unison.
+      firefly.style.animationDelay = '-' + (Math.random() * 10).toFixed(1) + 's, -' + (Math.random() * 5).toFixed(1) + 's';
+      heroEl.appendChild(firefly);
     }
   }
 

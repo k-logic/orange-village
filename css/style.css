@@ -339,6 +339,18 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: var(--header-height);
 }
 
+/* Darkening tint sits BELOW the fireflies (z-index 1 < .firefly z-index 2), so
+   dimming the background photo makes the glowing fireflies stand out rather than
+   dimming them too. Text legibility is handled by .hero__overlay above. */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.55) 100%);
+}
+
 .hero__slider {
   position: relative;
   width: 100%;
@@ -374,47 +386,38 @@ h1, h2, h3, h4, h5, h6 {
   pointer-events: none;
 }
 
-/* Falling Sakura Petals */
-.petal {
+/* Fireflies (hero section only — summer) */
+/* Kept on z-index 2, the same layer the sakura petals used: above the slider
+   images, below the bridge overlay and hero text. */
+.firefly {
   position: absolute;
-  top: -30px;
+  width: 8px;
+  height: 8px;
   z-index: 2;
+  border-radius: 50%;
   pointer-events: none;
   opacity: 0;
-  animation: petal-fall linear forwards;
+  /* Warm yellow-green core fading to transparent, plus a soft outer glow. */
+  background: radial-gradient(circle, #fbffc4 0%, #f4e96a 45%, rgba(180, 230, 90, 0) 72%);
+  box-shadow: 0 0 12px 3px rgba(246, 240, 130, 0.85);
+  will-change: transform, opacity;
+  /* Drift wanders back and forth (alternate); glow twinkles independently. */
+  animation:
+    firefly-drift var(--fly-duration) ease-in-out infinite alternate,
+    firefly-glow var(--glow-duration) ease-in-out infinite;
 }
 
-.petal {
-  filter: drop-shadow(0 1px 2px rgba(180, 100, 120, 0.2));
+@keyframes firefly-drift {
+  from { transform: translate(0, 0); }
+  to   { transform: translate(var(--fly-x), var(--fly-y)); }
 }
 
-@keyframes petal-fall {
-  0% {
-    opacity: 0;
-    transform: translateX(0) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(var(--petal-scale));
-  }
-  8% {
-    opacity: 0.85;
-  }
-  20% {
-    transform: translateX(calc(var(--leaf-drift) * 0.2)) rotateX(60deg) rotateY(30deg) rotateZ(calc(var(--leaf-rotate) * 0.2)) scale(var(--petal-scale));
-  }
-  40% {
-    opacity: 0.75;
-    transform: translateX(calc(var(--leaf-drift) * -0.15)) rotateX(-20deg) rotateY(-45deg) rotateZ(calc(var(--leaf-rotate) * 0.45)) scale(var(--petal-scale));
-  }
-  60% {
-    transform: translateX(calc(var(--leaf-drift) * 0.6)) rotateX(40deg) rotateY(60deg) rotateZ(calc(var(--leaf-rotate) * 0.65)) scale(var(--petal-scale));
-  }
-  80% {
-    opacity: 0.6;
-    transform: translateX(calc(var(--leaf-drift) * 0.3)) rotateX(-30deg) rotateY(-20deg) rotateZ(calc(var(--leaf-rotate) * 0.85)) scale(var(--petal-scale));
-  }
-  100% {
-    opacity: 0;
-    transform: translateX(var(--leaf-drift)) rotateX(20deg) rotateY(40deg) rotateZ(var(--leaf-rotate)) scale(var(--petal-scale));
-    top: 100%;
-  }
+@keyframes firefly-glow {
+  0%   { opacity: 0; }
+  25%  { opacity: 1; }
+  50%  { opacity: 0.25; }
+  75%  { opacity: 0.9; }
+  100% { opacity: 0; }
 }
 
 .hero__overlay {
@@ -423,7 +426,8 @@ h1, h2, h3, h4, h5, h6 {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.4) 100%);
+  /* No background tint here — darkening moved to .hero::before, below the
+     fireflies. This layer only centers the hero text above the glow. */
   display: flex;
   align-items: center;
   justify-content: center;
